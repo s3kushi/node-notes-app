@@ -1,3 +1,3 @@
-# node-notes-app
+# node-simple-exercises
 
-Silly exercise involving fs and yargs modules. Takes notes as inputs from the command line.
+Simple apps created for practicing that do not deserve their own repositories.
