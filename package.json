@@ -16,5 +16,9 @@
   "bugs": {
     "url": "https://github.com/s3kushi/node-notes-app/issues"
   },
-  "homepage": "https://github.com/s3kushi/node-notes-app#readme"
+  "homepage": "https://github.com/s3kushi/node-notes-app#readme",
+  "dependencies": {
+    "chalk": "^4.1.0",
+    "yargs": "^16.2.0"
+  }
 }
