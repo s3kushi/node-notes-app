@@ -4,6 +4,7 @@
   "description": "Weather app",
   "main": "src/app.js",
   "scripts": {
+    "start": "node src/app.js \"Boston\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
