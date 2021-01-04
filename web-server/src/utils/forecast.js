@@ -5,11 +5,11 @@ const forecastPromise = (latitude, longitude) => {
 
     return new Promise((resolve, reject) => {
         request({ url, json: true }, (error, { body } = {}) => {
-            if(error) {
+            if (error) {
                 reject('Unable to connect to weather service')
                 return
             }
-            if(body.error) {
+            if (body.error) {
                 reject('Unable to find location')
                 return
             }
@@ -22,11 +22,11 @@ const forecastCallback = (latitude, longitude, callback) => {
     const url = `http://api.weatherstack.com/current?access_key=d674ffd19a5038c601fe203227d2c081&query=${latitude},${longitude}&units=m`
 
     request({ url, json: true }, (error, { body } = {}) => {
-        if(error) {
+        if (error) {
             callback('Unable to connect to weather service', undefined)
             return
         }
-        if(body.error) {
+        if (body.error) {
             callback('Unable to find location', undefined)
             return
         }

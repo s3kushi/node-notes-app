@@ -21,7 +21,7 @@ const addNotes = (title, body) => {
     const notes = loadNotes()
     const duplicateNote = notes.find(note => note.title === title)
 
-    if(duplicateNote) {
+    if (duplicateNote) {
         console.log(chalk.red.inverse('Duplicate note'))
         return
     }
@@ -39,7 +39,7 @@ const updateNote = (title, body) => {
     const notes = loadNotes()
     const noteToBeUpdated = notes.find(note => note.title === title)
 
-    if(!noteToBeUpdated) {
+    if (!noteToBeUpdated) {
         console.log(chalk.red.inverse('Invalid note. Create it first.'))
         return
     }
@@ -69,7 +69,7 @@ const removeNotes = (title) => {
     const notes = loadNotes()
     const updatedNotes = notes.filter(note => note.title !== title)
 
-    if(notes.length !== updatedNotes.length) {
+    if (notes.length !== updatedNotes.length) {
         saveNotes(updatedNotes)
         console.log(chalk.green.inverse('Note removed'))
     } else {

@@ -2,16 +2,16 @@ const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 const inputLocation = process.argv[2]
 
-if(!inputLocation) return console.error('Location parameter missing')
+if (!inputLocation) return console.error('Location parameter missing')
 
 callbackMethod = () => {
     geocode.geocodeCallback(inputLocation, (error, { latitude, longitude, location } = {}) => {
-        if(error) {
+        if (error) {
             return console.log(error)
         }
     
         forecast.forecastCallback(latitude, longitude, (error, forecastData) => {
-            if(error) {
+            if (error) {
                 return console.log(error)
             }
             console.log('Location ', location)
