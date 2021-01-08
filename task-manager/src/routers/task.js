@@ -3,11 +3,35 @@ const Task = require('../models/task')
 const auth = require('../middleware/auth')
 const router = new express.Router()
 
+// GET /tasks?completed=true
+// GET /tasks?limit=10&skip
+// GET /tasks?sortBy=createdAt:desc
 router.get('/tasks', auth, async (req, res) => {
     const { user } = req
+    const match = {}
+    const sort = {}
+    const { completed, limit, skip, sortBy } = req.query
+
+    if (completed) { // if the parameter is provided return data according to it, otherwise return everything
+        match.completed = completed === 'true'
+    }
+
+    if (sort) {
+        const parts = sortBy.split(':')
+        sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
+    }
+
     try {
         // const tasks = await Task.find({ owner: req.user._id })
-        await user.populate('tasks').execPopulate()
+        await user.populate({
+            path: 'tasks',
+            match,
+            options: {
+                limit: parseInt(limit),
+                skip: parseInt(skip),
+                sort
+            }
+        }).execPopulate()
         res.send(user.tasks)
     } catch (e) {
         res.status(500).send(e)
