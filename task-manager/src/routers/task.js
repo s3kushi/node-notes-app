@@ -16,7 +16,7 @@ router.get('/tasks', auth, async (req, res) => {
         match.completed = completed === 'true'
     }
 
-    if (sort) {
+    if (sortBy) {
         const parts = sortBy.split(':')
         sort[parts[0]] = parts[1] === 'desc' ? -1 : 1
     }
@@ -64,7 +64,7 @@ router.post('/tasks', auth, async (req, res) => {
 
     try {
         await task.save()
-        res.status(201).send()
+        res.status(201).send(task)
     } catch (e) {
         res.status(400).send(e)
     }

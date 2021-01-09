@@ -11,8 +11,8 @@ const upload = multer({
         fileSize: 1000000
     },
     fileFilter(req, file, cb) {
-        if (file.originalname.endsWith(/\.(jpg|jpeg|png)$/)) {
-            return cb(new Error('Invalid file format.'))
+        if (!file.originalname.match(/\.(jpg|jpeg|png)$/)) {
+            return cb(new Error('Please upload an image'))
         }
 
         cb(undefined, true)
@@ -125,7 +125,7 @@ router.delete('/users/me/avatar', auth, async (req, res) => {
     res.send()
 })
 
-router.get('/users/:id/avatar', auth, async (req, res) => {
+router.get('/users/:id/avatar', async (req, res) => {
     try {
         const user = await User.findById(req.params.id)
 
