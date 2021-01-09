@@ -56,7 +56,7 @@ router.get('/tasks/:taskId', auth, async (req, res) => {
 
 })
 
-router.post('/tasks', async (req, res) => {
+router.post('/tasks', auth, async (req, res) => {
     const task = new Task({
         ...req.body,
         owner: req.user._id
@@ -99,7 +99,7 @@ router.put('/tasks/:taskId', auth, async (req, res) => {
     }
 })
 
-router.delete('/delete/:taskId', auth, async (req, res) => {
+router.delete('/tasks/:taskId', auth, async (req, res) => {
     const { taskId } = req.params
 
     try {
